@@ -1,38 +1,41 @@
-.App {
-  text-align: center;
+.infodiv {
+    padding: 2em;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+}
+    .infodiv div {
+        margin : 0.5em;
+    }
+    .infodiv input {
+        margin : 1em;
+        width : 10%;
+    }
+
+/* 스케쥴 */
+.schedule {
+    padding: 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.worker-schedule {
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+    text-align: center;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+    .worker-schedule .working-day {
+        display: inline;
+        margin: 5px;
+        padding : 1px;
+        border : 1px solid black;
+    }
+    .worker-schedule .off-day {
+        display: inline;
+        margin: 5px;
+        padding : 1px;
+        border : 1px solid black;
+        color : red;
+    }
