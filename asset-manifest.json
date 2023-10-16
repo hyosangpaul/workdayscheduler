@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/workdayscheduler/static/css/main.6fc52b83.css",
-    "main.js": "/workdayscheduler/static/js/main.9e8bfb9b.js",
+    "main.css": "/workdayscheduler/static/css/main.b0a0540f.css",
+    "main.js": "/workdayscheduler/static/js/main.7da3a074.js",
     "index.html": "/workdayscheduler/index.html",
-    "main.6fc52b83.css.map": "/workdayscheduler/static/css/main.6fc52b83.css.map",
-    "main.9e8bfb9b.js.map": "/workdayscheduler/static/js/main.9e8bfb9b.js.map"
+    "main.b0a0540f.css.map": "/workdayscheduler/static/css/main.b0a0540f.css.map",
+    "main.7da3a074.js.map": "/workdayscheduler/static/js/main.7da3a074.js.map"
   },
   "entrypoints": [
-    "static/css/main.6fc52b83.css",
-    "static/js/main.9e8bfb9b.js"
+    "static/css/main.b0a0540f.css",
+    "static/js/main.7da3a074.js"
   ]
 }
