@@ -1,3 +1,4 @@
+/* 스케줄 조건 */
 .infodiv {
     padding: 2em;
     font-size: large;
@@ -9,10 +10,36 @@
     }
     .infodiv input {
         margin : 1em;
-        width : 10%;
+        width : 30%;
     }
 
-/* 스케쥴 */
+/* 스케줄 확인 버튼 */
+.schedulebtndiv {
+    display: flex;
+    justify-content: flex-end;
+    margin-right : 3em;
+}
+    .schedulebtndiv button {
+        margin : 0.5em;
+    }
+    .schedulebtn {
+        position: relative;
+        border: none;
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 15px;
+        background-color: blueviolet;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+        font-weight: 400;
+        transition: 0.25s;
+    }
+        .schedulebtn:hover {
+            background-color: rgb(169, 112, 223);
+        }
+
+
+/* 스케줄 */
 .schedule {
     padding: 3em;
     display: flex;
