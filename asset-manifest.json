@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/workdayscheduler/static/css/main.6fc52b83.css",
+    "main.js": "/workdayscheduler/static/js/main.9e8bfb9b.js",
+    "index.html": "/workdayscheduler/index.html",
+    "main.6fc52b83.css.map": "/workdayscheduler/static/css/main.6fc52b83.css.map",
+    "main.9e8bfb9b.js.map": "/workdayscheduler/static/js/main.9e8bfb9b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6fc52b83.css",
+    "static/js/main.9e8bfb9b.js"
+  ]
+}
