@@ -119,6 +119,18 @@ const App = () => {
       alert('최대 출근자가 전체 직원보다 많습니다.');
       return;
     }
+    if (maximumworker === 0) {
+      alert('최대 출근자가 없습니다.');
+      return;
+    }
+    if (leastworker === 0) {
+      alert('최소 출근자가 없습니다.');
+      return;
+    }
+    if (totalworker === 0) {
+      alert('총 직원이 없습니다.');
+      return;
+    }
     setShowSchedule(true);
   };
 
