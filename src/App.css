@@ -1,19 +1,19 @@
 /* 스케줄 조건 */
 .infodiv {
-    padding: 2em;
+    padding: 1em;
     font-size: large;
     display: flex;
     justify-content: center;
 }
     .infodiv div {
-        margin : 0.5em;
+        text-align: center;
     }
     .infodiv input {
         text-align: center;
         margin : 1em;
-        width : 10%;
+        width : 20%;
+        font-size: large;
     }
-
 /* 스케줄 확인 버튼 */
 .schedulebtndiv {
     display: flex;
@@ -87,13 +87,13 @@
 }
     .worker-schedule .working-day {
         display: inline;
-        margin: 3px;
+        margin: 1px;
         padding : 1px;
         border : 1px solid black;
     }
     .worker-schedule .off-day {
         display: inline;
-        margin: 3px;
+        margin: 1px;
         padding : 1px;
         border : 1px solid black;
         color : red;
