@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import Modal from "react-modal";
 import Header from "./page/Header";
-import "./app.css";
+import "./App.css";
 
 const App = () => {
   const [leastworker, setLeastworker] = useState(0);
@@ -9,6 +10,7 @@ const App = () => {
   const [totalworker, setTotalworker] = useState(0);
   const [schedule, setSchedule] = useState([]);
   const [showSchedule, setShowSchedule] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   // 근무 스케쥴 규칙
   // 1. 하루의 최소근무자 (leastworker) 는 반드시 설정한 수 이상
@@ -136,12 +138,11 @@ const App = () => {
           <div className="leastworker">
             일 최소 출근
             <input
-              type="number"
               value={leastworker}
               onChange={(e) => {
                 const value = parseInt(e.target.value);
-                if (!isNaN(value)) {
-                  setLeastworker(value);
+                if (value === '' || (value !== '' && !isNaN(value))) {
+                  setLeastworker(value === '' ? 0 : parseInt(value));
                 }
               }}
               className="leastinput"
@@ -152,12 +153,11 @@ const App = () => {
           <div className="maximumworker">
             일 최대 출근
             <input
-              type="number"
               value={maximumworker}
               onChange={(e) => {
                 const value = parseInt(e.target.value);
-                if (!isNaN(value)) {
-                  setMaximumworker(value);
+                if (value === '' || (value !== '' && !isNaN(value))) {
+                  setMaximumworker(value === '' ? 0 : parseInt(value));
                 }
               }}
               className="maximuminput"
@@ -168,12 +168,11 @@ const App = () => {
           <div className="totalday">
             이번 달은 총
             <input
-              type="number"
               value={totalday}
               onChange={(e) => {
                 const value = parseInt(e.target.value);
-                if (!isNaN(value)) {
-                  setTotalday(value);
+                if (value === '' || (value !== '' && !isNaN(value))) {
+                  setTotalday(value === '' ? 0 : parseInt(value));
                 }
               }}
               className="totaldayinput"
@@ -184,12 +183,11 @@ const App = () => {
           <div className="totalworker">
             근무하는 직원
             <input
-              type="number"
               value={totalworker}
               onChange={(e) => {
                 const value = parseInt(e.target.value);
-                if (!isNaN(value)) {
-                  setTotalworker(value);
+                if (value === '' || (value !== '' && !isNaN(value))) {
+                  setTotalworker(value === '' ? 0 : parseInt(value));
                 }
               }}
               className="totalworkerinput"
@@ -198,29 +196,60 @@ const App = () => {
           </div>
         </div>
         <div className="schedulebtndiv">
-          <button className="schedulebtn" onClick={generateSchedule}>스케줄 확인</button>
+            <button className="howtousebtn" onClick={() => setModalIsOpen(true)}>
+              사용방법
+            </button>
+            <button className="schedulebtn" onClick={generateSchedule}>스케줄 확인</button>
           {showSchedule && (
             <button className="schedulebtn" onClick={resetSchedule}>
               스케줄 초기화
             </button>
           )}
         </div>
+        <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+          <div className="howtousemodaldiv">
+            <h1>* 스케줄 자동 배정 시스템 사용 방법 *</h1>
+            <br/>
+            <p>* 사용방법 *</p>
+            <p>1. 일 최소 출근은 일 최대 출근 보다 적을 수 없습니다.</p>
+            <p>2. 일 최소 출근과 일 최대 출근은 근무하는 직원보다 많을 수 없습니다.</p>
+            <p>3. 이번 달은 28보다 적을 수 없고 31보다 많을 수 없습니다.</p>
+            <p>4. 스케줄 확인 후 스케줄 초기화를 누르고 다시 스케줄 확인을 누르면 설정한 상태
+            그대로 다시 스케줄을 만들 수 있습니다.
+            </p>
+            <br/>
+            <p>* 참고한 근무 스케줄 규칙 *</p>
+            <p>1. 하루의 최소근무자는 설정한 수 이상</p>
+            <p>2. 하루의 최대근무자는 설정한 수 이하</p>
+            <p>3. 연속 휴무는 최대 2일</p>
+            <p>4. 연속 근무는 최대 5일</p>
+            <br/>
+            <p>* 현재 수정 못한 문제점 *</p>
+            <p>1. 숫자를 지우고 처음부터 다시 적으려면 마우스 드래그 하고 숫자적기</p>
+            <p>2. 월을 설정하면 자동으로 최대 출근일 나오기 수정 예정</p>
+            <p>3. 평일, 주말 반영 수정 예정</p>
+            <p>4. 자잘하게 틀린 경우가 있습니다. 그럴 경우 초기화 및 확인</p>
+          </div>
+          <div className="howtousebtndiv" >
+            <button className="howtousebtn" onClick={() => setModalIsOpen(false)}>닫기</button>
+          </div>
+        </Modal>
         {showSchedule && (
         <div className="schedule">
-          {schedule.map((workerSchedule, index) => (
-            <div key={index} className="worker-schedule">
-              직원 {index + 1} :
-              {workerSchedule.map((isWorking, dayIndex) => (
-                <div
-                  key={dayIndex}
-                  className={isWorking ? "working-day" : "off-day"}
-                >
-                  {isWorking ? "출" : "휴"}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
+        {schedule.map((workerSchedule, index) => (
+          <div key={index} className="worker-schedule">
+            <div className="schedule-label">직원 {index + 1} :</div>
+            {workerSchedule.map((isWorking, dayIndex) => (
+              <div
+                key={dayIndex}
+                className={isWorking ? "working-day" : "off-day"}
+              >
+                {isWorking ? "출" : "휴"}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>      
       )}
       </div>
     </div>

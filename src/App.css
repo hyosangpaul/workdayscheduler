@@ -9,8 +9,9 @@
         margin : 0.5em;
     }
     .infodiv input {
+        text-align: center;
         margin : 1em;
-        width : 30%;
+        width : 10%;
     }
 
 /* 스케줄 확인 버튼 */
@@ -21,6 +22,7 @@
 }
     .schedulebtndiv button {
         margin : 0.5em;
+        color : white;
     }
     .schedulebtn {
         position: relative;
@@ -38,6 +40,36 @@
             background-color: rgb(169, 112, 223);
         }
 
+/*사용 방법*/
+.howtousebtn {
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background-color: blueviolet;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 400;
+    transition: 0.25s;
+    color : white;
+}
+    .howtousebtn:hover {
+        background-color: rgb(169, 112, 223);
+    }
+
+.howtousemodaldiv {
+    text-align: center;
+    padding : 3em;
+    margin : 1em;
+}
+    .howtousemodaldiv p {
+        margin : 0.5em;
+    }
+.howtousebtndiv {
+    display: flex;
+    justify-content: center;
+}
 
 /* 스케줄 */
 .schedule {
@@ -46,22 +78,22 @@
     flex-direction: column;
     justify-content: center;
 }
-
 .worker-schedule {
     display: flex;
+    align-items: center;
     justify-content: center;
     margin: 1em;
     text-align: center;
 }
     .worker-schedule .working-day {
         display: inline;
-        margin: 5px;
+        margin: 3px;
         padding : 1px;
         border : 1px solid black;
     }
     .worker-schedule .off-day {
         display: inline;
-        margin: 5px;
+        margin: 3px;
         padding : 1px;
         border : 1px solid black;
         color : red;
