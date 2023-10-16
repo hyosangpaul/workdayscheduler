@@ -16,6 +16,8 @@
  * http://api.jqueryui.com/category/ui-core/
  */
 
+/*! sheetjs (C) 2013-present SheetJS -- http://sheetjs.com */
+
 /**
  * @license React
  * react-dom.production.min.js
