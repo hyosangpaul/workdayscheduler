@@ -245,13 +245,15 @@ const App = () => {
         </div>
         {/* 버튼 부 */}
         <div className="schedulebtndiv">
-          <button className="howtousebtn" onClick={() => setModalIsOpen(true)}>
-            사용방법
-          </button>
           {!showSchedule && (
+            <div>
+                <button className="howtousebtn" onClick={() => setModalIsOpen(true)}>
+                사용방법
+                </button>
                 <button className="schedulebtn" onClick={generateSchedule}>
                   스케줄 확인
                 </button>
+            </div>
               )}
           {showSchedule && (
             <div>
