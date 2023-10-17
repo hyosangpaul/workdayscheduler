@@ -157,7 +157,7 @@ const Schedule = () => {
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Schedule');
     const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-    saveAsExcelFile(excelBuffer, '직원 스케줄');
+    saveAsExcelFile(excelBuffer, '정직원 스케줄');
   };
   
   const saveAsExcelFile = (buffer, fileName) => {
@@ -267,7 +267,7 @@ const Schedule = () => {
         <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
           <div className="howtousemodaldiv">
             {/* 모달 내용 */}
-            <h1>* 스케줄 자동 배정 시스템 사용 방법 *</h1>
+            <h1>* 정직원 스케줄 사용 방법 *</h1>
             <br/>
             <p>* 사용방법 *</p>
             <p>1. 일 최소 출근, 일 최대 출근, 총 직원, 이번 달을 적고 스케줄 확인을 누릅니다.</p>
@@ -286,7 +286,6 @@ const Schedule = () => {
             <p>1. 숫자를 지우고 처음부터 다시 적으려면 마우스 드래그 하고 숫자를 적어 주세요.</p>
             <p>2. 자잘하게 틀린 경우가 있습니다. 그럴 경우 초기화 및 확인을 눌러 주세요.</p>
             <br/>
-            <p>이미지 저작권 : catkuro</p>
           </div>
           <div className="howtousebtndiv" >
             <button className="howtousebtn" onClick={() => setModalIsOpen(false)}>닫기</button>

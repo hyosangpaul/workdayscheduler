@@ -13,7 +13,9 @@ function App() {
       <BrowserRouter>
         <Header/>
         <div className="Routediv">
-          <Sidebar className="Sidebar"/>
+          <div>
+            <Sidebar className="Sidebar"/>
+          </div>
           <Routes className="Route">
             <Route path="/workdayscheduler" element={<Schedule/>}/>
             <Route path="/parttime" element={<Parttime/>}/>

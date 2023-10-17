@@ -1,3 +1,116 @@
+.parttimemain {
+    width: 100%;
+}
+/* 출근 직원 ~ 주말/평일 */
 .parttime {
+    margin : 1em;
     display: flex;
+    justify-content: center;
+}
+    .workworkers {
+        display: flex;
+        justify-content: center;
+    }
+    .parttime div {
+        display: flex;
+    }
+    .parttime div p {
+        margin: 0.5em;
+    }
+    .parttime div input {
+        margin: 0.5em;
+        width: 10%;
+    }
+    .parttime div select {
+        margin: 0.5em;
+    }
+
+/* 출근시간 인원수 */
+.worktimenum {
+    display: flex;
+    justify-content: center;
+    margin : 0.5em;
+}
+    .worktimenum div {
+        display: flex;
+        justify-content: center;
+    }
+        .worktimenum div p {
+            margin: 0.5em;
+        }
+        .worktimenum div input {
+            margin : 0.5em;
+            width : 15%; 
+        }
+/* 출근시간 추가 버튼 */
+.addbtndiv {
+    display: flex;
+    justify-content: center;
+    margin : 0.5em;
+}
+    .addbtndiv button {
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background-color: blueviolet;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 400;
+    transition: 0.25s;
+    color : white;
+    }
+        .addbtndiv button:hover {
+            background-color: rgb(169, 112, 223);
+        }
+/* 출근시간 삭제 버튼 */
+.deletebtn {
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background-color: blueviolet;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 400;
+    transition: 0.25s;
+    margin : 0.3em;
+    color : white;
+}
+    .deletebtn:hover {
+        background-color: rgb(169, 112, 223);
+    }
+/* 스케줄 확인 버튼 */
+.schedulegen {
+    margin : 1em;
+    display: flex;
+    justify-content: flex-end;
+}
+    .schedulegen button {
+    position: relative;
+    border: none;
+    display: inline-block;
+    margin : 0.3em;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background-color: blueviolet;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 400;
+    transition: 0.25s;
+    color : white;
+    }
+        .schedulegen button:hover {
+            background-color: rgb(169, 112, 223);
+        }
+.partschedule {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.worktime {
+    padding: 0.5em;
+    border: 1px solid black;
 }

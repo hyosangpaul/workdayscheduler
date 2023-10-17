@@ -5,7 +5,7 @@ const Header = () => {
     return (
         <div className="headerdiv">
             <header className="header">
-                정직원 출근 스케줄 자동 배정 시스템
+                스케줄 생성기
             </header>
         </div>
     )
