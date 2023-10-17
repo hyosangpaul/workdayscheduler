@@ -310,8 +310,8 @@ const App = () => {
                       setSchedule(updatedSchedule);
                     }}
                   >
-                    <option className="off-day" value="휴">휴</option>
-                    <option className="working-day" value="출">출</option>
+                    <option value="출">출</option>
+                    <option value="휴">휴</option>
                   </select>
                 ))}
               </div>
