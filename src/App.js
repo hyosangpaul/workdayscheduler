@@ -14,8 +14,11 @@ const App = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
 
+  // 스케줄 생성 로직
   useEffect(() => {
     if (showSchedule) {
+
+      // 월에 맞춰서 totalday 생성
       const daysInMonth = new Date(new Date().getFullYear(), selectedMonth, 0).getDate();
       setTotalday(daysInMonth);
 
@@ -41,7 +44,8 @@ const App = () => {
               }
             }
           }
-        } 
+        }
+
         // 최대 근무자 수 초과 시, 초과하는 만큼 근무 일정을 삭제
         else if (workingCount > maximumworker) {
           for (let j = 0; j < workingCount - maximumworker; j++) {
@@ -61,7 +65,8 @@ const App = () => {
         for (let j = 0; j < daysInMonth; j++) {
           if (!newSchedule[i][j]) {
             consecutiveOffDays++;
-            // 연속으로 쉬는 날은 2일
+
+            // 연속으로 쉬는 날은 2일로 설정
             if (consecutiveOffDays >= 2) {
               if (j + 1 < daysInMonth) {
                 newSchedule[i][j + 1] = true;
@@ -74,12 +79,13 @@ const App = () => {
         }
       }
 
-      // 연속으로 일하는 날 제한
+      // 연속으로 일하는 날 조절
       for (let i = 0; i < totalworker; i++) {
         let consecutiveWorkingDays = 0;
         for (let j = 0; j < daysInMonth; j++) {
           if (newSchedule[i][j]) {
             consecutiveWorkingDays++;
+
             // 연속으로 일하는 날이 5일을 초과하는 경우
             if (consecutiveWorkingDays > 4) {
               if (j + 1 < daysInMonth) {
@@ -99,13 +105,15 @@ const App = () => {
 
   }, [totalworker, showSchedule, leastworker, maximumworker, selectedMonth, totalday]);
 
-  // 스케줄 생성 버튼
+  // 스케줄 생성 & Validation
   const generateSchedule = () => {
     if (leastworker === 19 && maximumworker === 96) {
       alert("오민영 바보")
+      return;
     }
     if (leastworker === 19 && maximumworker === 95) {
       alert("이효상 천재")
+      return;
     }
     if (leastworker > maximumworker) {
       alert('최소 출근자가 최대 출근자보다 많습니다.');
@@ -119,12 +127,12 @@ const App = () => {
       alert('최대 출근자가 전체 직원보다 많습니다.');
       return;
     }
-    if (maximumworker === 0) {
-      alert('최대 출근자가 없습니다.');
-      return;
-    }
     if (leastworker === 0) {
       alert('최소 출근자가 없습니다.');
+      return;
+    }
+    if (maximumworker === 0) {
+      alert('최대 출근자가 없습니다.');
       return;
     }
     if (totalworker === 0) {
@@ -134,6 +142,7 @@ const App = () => {
     setShowSchedule(true);
   };
 
+  // 스케줄 초기화
   const resetSchedule = () => {
     setSchedule([]);
     setShowSchedule(false);
@@ -163,6 +172,7 @@ const App = () => {
     document.body.removeChild(link);
   };
   
+  // 엑셀 다운로드 버튼
   const downloadScheduleAsExcel = () => {
     downloadExcel(schedule);
   };
@@ -217,7 +227,7 @@ const App = () => {
             />{" "}
             명
           </div>
-          {/* 날짜 선택 */}
+          {/* 월 선택 */}
           <div className="selectedDate">
             이번 달은
             <input
@@ -233,19 +243,24 @@ const App = () => {
             월
           </div>
         </div>
+        {/* 버튼 부 */}
         <div className="schedulebtndiv">
           <button className="howtousebtn" onClick={() => setModalIsOpen(true)}>
             사용방법
           </button>
-          <button className="schedulebtn" onClick={generateSchedule}>스케줄 확인</button>
+          {!showSchedule && (
+                <button className="schedulebtn" onClick={generateSchedule}>
+                  스케줄 확인
+                </button>
+              )}
           {showSchedule && (
             <div>
-              <button className="schedulebtn" onClick={resetSchedule}>
-              스케줄 초기화
-              </button>
-              <button className="schedulebtn" onClick={downloadScheduleAsExcel}>
-              엑셀 다운받기
-              </button>
+                <button className="schedulebtn" onClick={downloadScheduleAsExcel}>
+                엑셀 다운받기
+                </button>
+                <button className="schedulebtn" onClick={resetSchedule}>
+                스케줄 초기화
+                </button>
             </div>
           )}
         </div>
@@ -275,6 +290,7 @@ const App = () => {
             <button className="howtousebtn" onClick={() => setModalIsOpen(false)}>닫기</button>
           </div>
         </Modal>
+        {/* 스케줄 */}
         {showSchedule && (
           <div className="schedule">
             {schedule.map((workerSchedule, index) => (
