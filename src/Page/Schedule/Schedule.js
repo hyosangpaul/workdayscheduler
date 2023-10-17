@@ -285,6 +285,8 @@ const Schedule = () => {
             <p>* 현재 수정 못한 문제점 *</p>
             <p>1. 숫자를 지우고 처음부터 다시 적으려면 마우스 드래그 하고 숫자를 적어 주세요.</p>
             <p>2. 자잘하게 틀린 경우가 있습니다. 그럴 경우 초기화 및 확인을 눌러 주세요.</p>
+            <br/>
+            <p>이미지 저작권 : catkuro</p>
           </div>
           <div className="howtousebtndiv" >
             <button className="howtousebtn" onClick={() => setModalIsOpen(false)}>닫기</button>
@@ -295,7 +297,7 @@ const Schedule = () => {
           <div className="schedule">
             {schedule.map((workerSchedule, index) => (
               <div key={index} className="worker-schedule">
-                <div className="schedule-label">직원 {index + 1} :</div>
+                <div className="schedule-label">{index + 1} : </div>
                 {workerSchedule.map((isWorking, dayIndex) => (
                   <select
                     key={dayIndex}

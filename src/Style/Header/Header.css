@@ -1,7 +1,6 @@
-.title {
-    padding : 3em;
+.headerdiv {
+    padding : 2em;
     background-color: blueviolet;
-    margin-bottom : 1em;
     font-size: 20px;
     text-align: center;
     color : white;
