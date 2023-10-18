@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import "./app.css"
+import "../src/style/app.css"
 import Schedule from "./page/schedule/schedule";
 import Sidebar from "./page/sidebar/sidebar";
 import Parttime from "./page/parttime/parttime";
