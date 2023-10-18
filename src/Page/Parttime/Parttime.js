@@ -83,19 +83,23 @@ const Parttime = () => {
     const handleDownloadExcel = () => {
         const workbook = XLSX.utils.book_new();
         const sheetData = [];
-        for (const [day, scheduleItems] of Object.entries(schedule)) {
-            const dataRow = {};
-            dataRow["Day"] = day;
-            for (let i = 0; i < totalworker; i++) {
-                dataRow[`직원 ${i + 1}`] = scheduleItems[i] || '';
+        
+        const headers = ["직원", ...Object.keys(schedule)];
+        sheetData.push(headers);
+        
+        for (let i = 0; i < totalworker; i++) {
+            const dataRow = [`직원 ${i + 1}`];
+            for (const [day, scheduleItems] of Object.entries(schedule)) {
+            dataRow.push(scheduleItems[i] || "-");
             }
             sheetData.push(dataRow);
         }
-        const worksheet = XLSX.utils.json_to_sheet(sheetData);
-        XLSX.utils.book_append_sheet(workbook, worksheet, 'Schedule');
-        const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-        saveAsExcel(excelBuffer, '계약직 스케줄');
-    };
+        
+        const worksheet = XLSX.utils.aoa_to_sheet(sheetData);
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Schedule");
+        const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+        saveAsExcel(excelBuffer, "계약직 스케줄");
+        };
 
     const saveAsExcel = (buffer, fileName) => {
         const data = new Blob([buffer], { type: 'application/octet-stream' });
@@ -119,8 +123,6 @@ const Parttime = () => {
                         onChange={(e) => setTotalWorker(parseInt(e.target.value))}
                     />
                     <p>명</p>
-                </div>
-                <div>
                     <p>주말/평일</p>
                     <select onChange={handleDayChange}>
                         <option value="평일">평일</option>
@@ -129,24 +131,27 @@ const Parttime = () => {
                 </div>
             </div>
                 {worktimes.map((worktime, index) => (
-                        <div key={index} className='worktimenum'>
-                            <div>
-                                <p>출근 시간</p>
-                                <input
-                                    type="text"
-                                    value={worktime.time}
-                                    onChange={(e) => handleWorkTimeChange(index, 'time', e)}
-                                />
+                        <div key={index} className='worktimenumdiv'>
+                            <div className='worktimenumcount'>
+                                <div>
+                                    <p>출근 시간</p>
+                                    <input
+                                        type="text"
+                                        className='worktimenuminput'
+                                        value={worktime.time}
+                                        onChange={(e) => handleWorkTimeChange(index, 'time', e)}
+                                    />
+                                    <p>인원 수</p>
+                                    <input
+                                        type="text"
+                                        className='worktimenuminput'
+                                        value={worktime.workers}
+                                        onChange={(e) => handleWorkTimeChange(index, 'workers', e)}
+                                    />
+                                    <p>명</p>
+                                </div>
                             </div>
                             <div>
-                                <p>인원 수</p>
-                                <input
-                                    type="text"
-                                    value={worktime.workers}
-                                    onChange={(e) => handleWorkTimeChange(index, 'workers', e)}
-                                />
-                                <p>명</p>
-                            </div>
                             {worktimes.length > 1 && (
                                 <button
                                 className='deletebtn'
@@ -155,6 +160,7 @@ const Parttime = () => {
                                     삭제
                                 </button>
                             )}
+                            </div>
                         </div>
                     ))}
                 <div className='addbtndiv'>
@@ -210,30 +216,30 @@ const Parttime = () => {
                 </Modal>
                 {/* 스케줄 */}
                 {showSchedule && (
-                    <div className='partschedule'>
-                        <table>
-                            <thead>
-                                <tr>
-                                    {Array.from({ length: totalworker }).map((_, index) => (
-                                        <th 
-                                        className='worktime'
-                                        key={index}>직원 {index + 1}</th>
+                <div className='partschedule'>
+                    <table>
+                        <thead>
+                            <tr>
+                                {Object.keys(schedule).map((day, index) => (
+                                    <th key={index}></th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {Array.from({ length: totalworker }).map((_, workerIndex) => (
+                                <tr key={workerIndex}>
+                                    <td className='workername'>직원 {workerIndex + 1}</td>
+                                    {Object.keys(schedule).map((day) => (
+                                        <td key={day} className='worktime'>
+                                            {schedule[day][workerIndex] || '-'}
+                                        </td>
                                     ))}
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {Object.keys(schedule).map((day, index) => (
-                                    <tr key={index}>
-                                        {schedule[day].map((status, idx) => (
-                                            <td key={idx}
-                                            className='worktime'>{status}</td>
-                                        ))}
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                )}
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
         </div>
     );
 };
