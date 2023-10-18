@@ -101,7 +101,6 @@ const Schedule = () => {
     } else {
       setSchedule([]);
     }
-
   }, [totalworker, showSchedule, leastworker, maximumworker, selectedMonth, totalday]);
 
   // 스케줄 생성 & Validation
@@ -297,30 +296,47 @@ const Schedule = () => {
         </Modal>
         {/* 스케줄 */}
         {showSchedule && (
-          <div className="schedule">
-            {schedule.map((workerSchedule, index) => (
-              <div key={index} className="worker-schedule">
-                <div className="schedule-label">{index + 1} : </div>
-                {workerSchedule.map((isWorking, dayIndex) => (
-                  <select
-                    key={dayIndex}
-                    className={isWorking ? "working-day" : "off-day"}
-                    value={isWorking ? "출" : "휴"}
-                    onChange={(e) => {
-                      const value = e.target.value;
-                      const updatedSchedule = [...schedule];
-                      updatedSchedule[index][dayIndex] = value === "출";
-                      setSchedule(updatedSchedule);
-                    }}
-                  >
-                    <option value="출">출</option>
-                    <option value="휴">휴</option>
-                  </select>
-                ))}
+        <div className="schedule">
+          {schedule.map((workerSchedule, index) => {
+            let totalWorkingDays = 0;
+            let totalOffDays = 0;
+            return (
+              <div key={index}>
+                <div className="showschedulediv">
+                  <div>{index + 1} : </div>
+                  {workerSchedule.map((isWorking, dayIndex) => {
+                    if (isWorking) {
+                      totalWorkingDays++;
+                    } else {
+                      totalOffDays++;
+                    }
+                    return (
+                      <select
+                        key={dayIndex}
+                        className={isWorking ? "working-day" : "off-day"}
+                        value={isWorking ? "출" : "휴"}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          const updatedSchedule = [...schedule];
+                          updatedSchedule[index][dayIndex] = value === "출";
+                          setSchedule(updatedSchedule);
+                        }}
+                      >
+                        <option value="출">출</option>
+                        <option value="휴">휴</option>
+                      </select>
+                    );
+                  })}
+                </div>
+                <div className="total-days">
+                  <div>총 출근 일수: {totalWorkingDays}</div>
+                  <div>총 휴무 일수: {totalOffDays}</div>
+                </div>
               </div>
-            ))}
-          </div>      
-        )}
+            );
+          })}
+        </div>
+      )}
       </div>
     </div>
   );

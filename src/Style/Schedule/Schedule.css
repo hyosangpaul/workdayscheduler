@@ -80,23 +80,30 @@
     flex-direction: column;
     justify-content: center;
 }
-.worker-schedule {
+.showschedulediv {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 1em;
     text-align: center;
 }
-    .worker-schedule .working-day {
+    .working-day {
         display: inline;
         margin: 1px;
         padding : 1px;
         border : 1px solid black;
     }
-    .worker-schedule .off-day {
+    .off-day {
         display: inline;
         margin: 1px;
         padding : 1px;
         border : 1px solid black;
         color : red;
+    }
+.total-days {
+    display: flex;
+    justify-content: center;
+}
+    .total-days div {
+        margin-right: 1em;
     }
