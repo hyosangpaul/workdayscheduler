@@ -177,7 +177,7 @@ const Schedule = () => {
   };
 
   return (
-    <div>
+    <div className="schedulediv">
       <div>
         <div className="infodiv">
           {/* 최소 출근 인원 */}
