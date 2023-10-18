@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import * as XLSX from 'xlsx';
-import "../../Style/Schedule/Schedule.css";
+import "../../style/schedule/schedule.css";
 
 const Schedule = () => {
     const [leastworker, setLeastworker] = useState(0);

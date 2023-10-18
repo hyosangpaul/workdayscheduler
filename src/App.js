@@ -1,17 +1,15 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import "./App.css"
-import Header from "./Page/Header/Header";
-import Sidebar from "./Page/Sidebar/Sidebar";
-import Schedule from "./Page/Schedule/Schedule";
-import Parttime from "./Page/Parttime/Parttime";
+import "./app.css"
+import Schedule from "./page/schedule/schedule";
+import Sidebar from "./page/sidebar/sidebar";
+import Parttime from "./page/parttime/parttime";
 
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header/>
         <div className="Routediv">
           <div>
             <Sidebar className="Sidebar"/>

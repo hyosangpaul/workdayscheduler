@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as XLSX from "xlsx";
 import Modal from "react-modal";
-import "../../Style/Parttime/Parttime.css"
+import "../../style/parttime/parttime.css"
 
 const Parttime = () => {
     const [totalworker, setTotalWorker] = useState(0);
