@@ -190,6 +190,7 @@ const Schedule = () => {
                 if (!isNaN(value)) {
                   setLeastworker(value);
                 }
+                setShowSchedule(false);
               }}
               className="leastinput"
             />{" "}
@@ -205,6 +206,7 @@ const Schedule = () => {
                 if (!isNaN(value)) {
                   setMaximumworker(value);
                 }
+                setShowSchedule(false);
               }}
               className="maximuminput"
             />{" "}
@@ -220,6 +222,7 @@ const Schedule = () => {
                 if (!isNaN(value)) {
                   setTotalworker(value);
                 }
+                setShowSchedule(false);
               }}
               className="totalworkerinput"
             />{" "}
@@ -235,6 +238,7 @@ const Schedule = () => {
                 if (!isNaN(value)) {
                   setSelectedMonth(value);
                 }
+                setShowSchedule(false);
               }}
               className="totalselectedDate"
             />{" "}

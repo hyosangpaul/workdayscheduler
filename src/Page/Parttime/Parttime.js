@@ -120,11 +120,17 @@ const Parttime = () => {
                     <input
                         type="number"
                         value={totalworker}
-                        onChange={(e) => setTotalWorker(parseInt(e.target.value))}
+                        onChange={(e) => {
+                            setTotalWorker(parseInt(e.target.value))
+                            setShowSchedule(false);
+                        }}
                     />
                     <p>명</p>
                     <p>주말/평일</p>
-                    <select onChange={handleDayChange}>
+                    <select onChange={(e) => {
+                        handleDayChange(e)
+                        setShowSchedule(false)
+                        }}>
                         <option value="평일">평일</option>
                         <option value="주말">주말</option>
                     </select>
@@ -139,14 +145,20 @@ const Parttime = () => {
                                         type="text"
                                         className='worktimenuminput'
                                         value={worktime.time}
-                                        onChange={(e) => handleWorkTimeChange(index, 'time', e)}
+                                        onChange={(e) => {
+                                            handleWorkTimeChange(index, 'time', e)
+                                            setShowSchedule(false)
+                                        }}
                                     />
                                     <p>인원 수</p>
                                     <input
                                         type="text"
                                         className='worktimenuminput'
                                         value={worktime.workers}
-                                        onChange={(e) => handleWorkTimeChange(index, 'workers', e)}
+                                        onChange={(e) => {
+                                            handleWorkTimeChange(index, 'workers', e)
+                                            setShowSchedule(false)
+                                        }}
                                     />
                                     <p>명</p>
                                 </div>
@@ -156,7 +168,10 @@ const Parttime = () => {
                                 <button
                                 className='deletebtn'
                                 type="button"
-                                onClick={() => handleRemoveWorkTime(index)}>
+                                onClick={() => {
+                                    handleRemoveWorkTime(index)
+                                    setShowSchedule(false)
+                                    }}>
                                     삭제
                                 </button>
                             )}
@@ -166,7 +181,11 @@ const Parttime = () => {
                 <div className='addbtndiv'>
                     <button
                     type="button"
-                    onClick={handleAddWorkTime}>
+                    onClick={(e) =>
+                        {
+                        handleAddWorkTime(e)
+                        setShowSchedule(false)
+                    }}>
                     인원 추가하기
                     </button>
                 </div>
