@@ -27,70 +27,57 @@ const Schedule = () => {
       // 각 날짜에 대한 스케줄을 계산
       for (let i = 0; i < daysInMonth; i++) {
         let workingCount = 0;
-        for (let j = 0; j < totalworker; j++) {
-          if (newSchedule[j][i]) {
-            workingCount++;
-          }
-        }
   
         // 최소 근무자 수 미달 시, 부족한 만큼 근무 일정을 추가
         if (workingCount < leastworker) {
-          for (let j = 0; j < leastworker - workingCount; j++) {
-            for (let k = 0; k < totalworker; k++) {
-              if (!newSchedule[k][i] && workingCount < leastworker) {
-                newSchedule[k][i] = true;
-                workingCount++;
-              }
+          console.log(1)
+          for (let j = 0; j < totalworker; j++) {
+            if (!newSchedule[j][i] && workingCount < leastworker) {
+              newSchedule[j][i] = false;
+              workingCount++;
+              console.log('workingCount :', workingCount)
             }
           }
         }
-
+  
         // 최대 근무자 수 초과 시, 초과하는 만큼 근무 일정을 삭제
-        else if (workingCount > maximumworker) {
-          for (let j = 0; j < workingCount - maximumworker; j++) {
-            for (let k = 0; k < totalworker; k++) {
-              if (newSchedule[k][i] && workingCount > maximumworker) {
-                newSchedule[k][i] = false;
-                workingCount--;
-              }
+        if (workingCount > maximumworker) {
+          console.log(2)
+          for (let j = 0; j < totalworker; j++) {
+            if (newSchedule[j][i] && workingCount > maximumworker) {
+              newSchedule[j][i] = true;
+              workingCount--;
             }
           }
         }
       }
   
-      // 연속으로 쉬는 날 조절
       for (let i = 0; i < totalworker; i++) {
         let consecutiveOffDays = 0;
+        let consecutiveWorkingDays = 0;
+  
         for (let j = 0; j < daysInMonth; j++) {
+          // 연속으로 쉬는 날 조절
           if (!newSchedule[i][j]) {
+            console.log(3)
             consecutiveOffDays++;
-
-            // 연속으로 쉬는 날은 2일로 설정
-            if (consecutiveOffDays >= 2) {
-              if (j + 1 < daysInMonth) {
-                newSchedule[i][j + 1] = true;
-                consecutiveOffDays = 0;
-              }
+  
+            if (consecutiveOffDays >= 2 && j + 1 < daysInMonth) {
+              newSchedule[i][j + 1] = true;
+              consecutiveOffDays = 0;
             }
           } else {
             consecutiveOffDays = 0;
           }
-        }
-      }
-
-      // 연속으로 일하는 날 조절
-      for (let i = 0; i < totalworker; i++) {
-        let consecutiveWorkingDays = 0;
-        for (let j = 0; j < daysInMonth; j++) {
+  
+          // 연속으로 일하는 날 조절
           if (newSchedule[i][j]) {
+            console.log(4)
             consecutiveWorkingDays++;
-
-            // 연속으로 일하는 날이 5일을 초과하는 경우
-            if (consecutiveWorkingDays > 4) {
-              if (j + 1 < daysInMonth) {
-                newSchedule[i][j + 1] = false;
-                consecutiveWorkingDays = 0;
-              }
+  
+            if (consecutiveWorkingDays > 4 && j + 1 < daysInMonth) {
+              newSchedule[i][j + 1] = false;
+              consecutiveWorkingDays = 0;
             }
           } else {
             consecutiveWorkingDays = 0;
