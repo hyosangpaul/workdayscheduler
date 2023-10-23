@@ -24,22 +24,24 @@ const Schedule = () => {
       const newSchedule = Array.from({ length: totalworker }, () =>
         Array.from({ length: daysInMonth }, () => Math.random() < 0.5)
       );
+
       // 각 날짜에 대한 스케줄을 계산
       for (let i = 0; i < daysInMonth; i++) {
         let workingCount = 0;
   
         // 최소 근무자 수 미달 시, 부족한 만큼 근무 일정을 추가
-        if (workingCount < leastworker) {
+        if (workingCount <= leastworker) {
           for (let j = 0; j < totalworker; j++) {
             if (!newSchedule[j][i] && workingCount < leastworker) {
               newSchedule[j][i] = true;
               workingCount++;
+              console.log('workingCount :', workingCount)
             }
           }
         }
   
         // 최대 근무자 수 초과 시, 초과하는 만큼 근무 일정을 삭제
-        if (workingCount > maximumworker) {
+        if (workingCount >= maximumworker) {
           for (let j = 0; j < totalworker; j++) {
             if (newSchedule[j][i] && workingCount > maximumworker) {
               newSchedule[j][i] = false;
